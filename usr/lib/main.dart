@@ -1,67 +1,51 @@
 import 'package:flutter/material.dart';
+import 'screens/home_screen.dart';
+import 'screens/story_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MidnightTalesApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MidnightTalesApp extends StatelessWidget {
+  const MidnightTalesApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Midnight Tales',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: const Color(0xFF0A0A0A),
+        primaryColor: Colors.red[900],
+        colorScheme: const ColorScheme.dark(
+          primary: Color(0xFFB71C1C),
+          secondary: Color(0xFF7F0000),
+          surface: Color(0xFF1A1A1A),
+        ),
+        fontFamily: 'Georgia',
+        textTheme: const TextTheme(
+          displayLarge: TextStyle(color: Colors.white70, fontWeight: FontWeight.bold),
+          bodyLarge: TextStyle(color: Colors.white60, height: 1.6, fontSize: 18),
+        ),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFF0A0A0A),
+          elevation: 0,
+          centerTitle: true,
+          titleTextStyle: TextStyle(
+            fontFamily: 'Georgia',
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFFB71C1C),
+            letterSpacing: 2,
+          ),
+        ),
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const MyHomePage(title: 'Flutter Demo Home Page'),
+        '/': (context) => const HomeScreen(),
+        '/story': (context) => const StoryScreen(),
       },
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text('$_counter', style: Theme.of(context).textTheme.headlineMedium),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), 
     );
   }
 }
